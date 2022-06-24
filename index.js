@@ -8,14 +8,10 @@ const app = express();
 
 app.use(json());
 
-app.use("/", routes);
+app.use("/", routes)
 
+const PORT = process.env.PORT || 3000;
 
-app.use("/flights", routes)
-
-
-const port = process.env.PORT || 3000;
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });
