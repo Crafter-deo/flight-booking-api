@@ -1,4 +1,3 @@
-const fs = require("fs")
 const { flights } = require("../models/Flight")
 const { v4: uuidv4 } = require("uuid")
 
@@ -32,6 +31,9 @@ exports.addFlight = (req, res) => {
     try {
         const flight = req.body
         flight.id = uuidv4()
+        let date = new Date()
+        flight.date = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+        flight.time = date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true })
         flights.push(flight)
         res.status(201).json(
             {
